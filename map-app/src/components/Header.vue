@@ -8,23 +8,6 @@
       <v-spacer></v-spacer>
       <div>
         <v-btn
-          depressed
-          color="#1f2e2e"
-          class="title"
-          to="/"
-        >
-          Clientes
-        </v-btn>
-        <v-btn
-          depressed
-          color="#1f2e2e"
-          class="title"
-          to="/Usuarios"
-        >
-          Usuários
-        </v-btn>
-        
-        <v-btn
           icon
           @click="logout"
         >

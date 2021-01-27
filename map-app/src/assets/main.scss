@@ -7,6 +7,10 @@
 font-family: "Roboto";
 }
 
+.side-nav {
+    width: 100% !important;
+}
+
 .background {
   background-image: url("background-map.png");
   height: 100%;
@@ -63,7 +67,7 @@ font-size: 14px;
 
 .list-card {
     margin: 1em 1em 1em 1em;
-    width: 20em;
+    width: auto;
 }
 
 .btn-login {

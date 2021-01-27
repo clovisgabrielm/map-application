@@ -1,19 +1,59 @@
 <template>
   <div>
+      <v-snackbar
+        v-model="snackbar"
+        top
+      >
+        {{ errorMsg }}
+        <template>
+          <v-btn
+            color="pink"
+            text
+            @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
       <v-row>
         <v-col
-          class="d-flex"
-          cols="3"
-          lg="3"
+          col="9"
+          lg="9"
+          md="6"
           sm="6"
         >
-          <v-card class="col-12 list-card">
+           <gmap-map
+            :center="{lat: this.lat, lng: this.lng}"
+            :zoom="16"
+            style="width: 100%; height: 100vh; margin-top: 0.5em"
+          >
+            <gmap-marker
+              :key="index"
+              v-for="(m, index) in places"
+              :position="m.geometry.location"
+              @click="center=m.position"
+            ></gmap-marker>
+          </gmap-map> 
+        </v-col>
+        <v-col
+          col="3"
+          lg="3"
+          md="6"
+          sm="6"
+        >
+          <v-card class="list-card col-12">
+            <v-card-title>
+              Busque locais próximos de você!
+            </v-card-title>
+            <v-card-subtitle>
+              Ao escolher um tipo no campo abaixo, serão exibidos locais em um raio de 5km.
+            </v-card-subtitle>
             <v-select
               v-model="type"
               :items="items"
               item-text="text"
               item-value="value"
-              label="Tipo"
+              label="Tipo do local"
               outlined
               v-on:change="changeType"
             ></v-select>
@@ -42,22 +82,6 @@
             </v-list>
           </v-card>
         </v-col>
-        <v-col
-          class="d-flex"
-        >
-          <gmap-map
-            :center="{lat: this.lat, lng: this.lng}"
-            :zoom="16"
-            style="width: 100%; height: auto;"
-          >
-            <gmap-marker
-              :key="index"
-              v-for="(m, index) in places"
-              :position="m.geometry.location"
-              @click="center=m.position"
-            ></gmap-marker>
-          </gmap-map>  
-        </v-col>
       </v-row>
   </div>
 </template>
@@ -76,12 +100,20 @@ export default {
       items: [
         { text: 'Restaurante', value: 'restaurant' },
         { text: 'Bar', value: 'bar' },
-        { text: 'Hotel', value: 'hotel' },
+        { text: 'Hotel', value: 'motel' },
         { text: 'Igreja', value: 'church' },
       ],
+      menu: [
+          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
+          { title: 'Photos', icon: 'mdi-image' },
+          { title: 'About', icon: 'mdi-help-box' },
+        ],
+        right: null,
       radius: "5",
       lat: 0,
       lng: 0,
+      errorMsg: "",
+      snackbar: false,
       selectedItem: 0,
       places: [],
     }
@@ -96,23 +128,28 @@ export default {
       position => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
+        this.getPlaces(this.lat, this.lng);
       }
     );
   },
   methods: {
-    changeType() {
-      console.log("chamou")
+    getPlaces(lat, lng) {
       const URL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${
-              this.lat
-            },${this.lng}&type=${this.type}&radius=${this.radius *
+              lat
+            },${lng}&type=${this.type}&radius=${this.radius *
               1000}&key=AIzaSyDZkiASvelK1aD_el52h6BDv82yeS33CZk`;
 
       axios.get(URL).then(response => {
         this.places = response.data.results;
         console.log("t", this.places)
       }).catch(error => {
+        this.errorMsg = error.message;
+        this.snackbar = true;
         console.log(error.message);
       });
+    },
+    changeType() {
+      this.getPlaces(this.lat, this.lng);
     }
   }
 };
