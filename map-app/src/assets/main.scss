@@ -1,0 +1,92 @@
+.inline {
+    display: inline-flex;
+    position: relative;
+}
+
+.title {
+font-family: "Roboto";
+}
+
+.background {
+  background-image: url("background-map.png");
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+}
+
+
+.login-card {
+width: 30em;
+top: 50%;
+}
+
+.login-form {
+color: #2e3b41;
+margin: 30px 30px 50px 30px;
+}
+
+.title-login {
+text-align: center;
+margin-bottom: 2.5em;
+}
+
+.title-contatos {
+font-size: 15px;
+margin-top: 22px;
+display: inline-block;
+margin-left: auto;
+}
+
+.centered {
+position: absolute !important;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.erro-msg {
+margin-top: -20px;
+margin-bottom: 20px;
+color: red;
+font-size: 12px;
+}
+
+.erro-selected-options {
+margin-bottom: 20px;
+color: red;
+font-size: 14px;
+}
+
+.list-container {
+    width: 100em;
+}
+
+.list-card {
+    margin: 1em 1em 1em 1em;
+    width: 20em;
+}
+
+.btn-login {
+align-content: center;
+width: 100%;
+}
+
+.white-text {
+color: #fff;
+}
+
+.container-cadastrar-cliente {
+padding-left: 50px;
+}
+
+.v-text-field .v-input__control .v-input__slot {
+min-height: auto !important;
+display: flex !important;
+align-items: center !important;
+}
+
+.mt0 {
+margin: -15px;
+}
+
+  
