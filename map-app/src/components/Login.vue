@@ -16,20 +16,20 @@
         <v-text-field
           name="email"
           v-model="email"
-          @input="limparMsgErro"
+          @input="cleanErrorMessage"
           label="E-mail"
           required
         ></v-text-field>
   
         <v-text-field
-          name="senha"
-          v-model="senha"
-          @input="limparMsgErro"
+          name="password"
+          v-model="password"
+          @input="cleanErrorMessage"
           type="password"
           label="Senha"
           required
         ></v-text-field>
-        <div class="erro-msg">{{ erro }}</div>
+        <div class="erro-msg">{{ error }}</div>
         <v-btn
           color="#ee675c"
           height="45px"
@@ -46,6 +46,7 @@
  
 <script>
 import "../assets/main.scss";
+import AuthAPI from "../api/auth";
 
 export default {
   name: 'Login',
@@ -55,29 +56,25 @@ export default {
   data () {
     return {
       email: '',
-      senha: '',
+      password: '',
       checkbox: '',
-      erro: ''
+      error: ''
     }
   },
   methods: {
-    limparMsgErro() {
-      this.erro = '';
+    cleanErrorMessage() {
+      this.error = '';
     },
     login() {
-      this.$router.push("/");
-      // AuthAPI.login({ email: this.email, senha: this.senha})
-      //     .then(() => {
-      //       this.$router.push("/");
-      //     })
-      //     .catch(err => {
-      //       console.error(`Não foi possível fazer login. ${err}`);
-      //       this.erro = 'E-mail e/ou senha incorretos.';
-      //     });
-    },
-    // mounted() {
-    //   eventBus.$emit("mostrarItensMenu");
-    // }
+      AuthAPI.login({ email: this.email, password: this.password})
+          .then(() => {
+            this.$router.push("/");
+          })
+          .catch(err => {
+            console.error(`Não foi possível fazer login. ${err}`);
+            this.error = 'E-mail e/ou senha incorretos.';
+          });
+    }
   }
 };
 </script>

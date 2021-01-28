@@ -88,7 +88,7 @@
  
 <script>
 import "../assets/main.scss";
-import axios from "axios";
+import HTTPRequest from "../api/axios-config";
 
 export default {
   name: 'MapScreen',
@@ -139,7 +139,7 @@ export default {
             },${lng}&type=${this.type}&radius=${this.radius *
               1000}&key=AIzaSyDZkiASvelK1aD_el52h6BDv82yeS33CZk`;
 
-      axios.get(URL).then(response => {
+      HTTPRequest.get(URL).then(response => {
         this.places = response.data.results;
         console.log("t", this.places)
       }).catch(error => {

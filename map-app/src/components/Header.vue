@@ -19,7 +19,7 @@
 </template>
  
 <script>
- 
+import AuthAPI from "../api/auth";
  
 export default {
   name: 'Header',
@@ -30,12 +30,12 @@ export default {
   },
   methods: {
     logout() {
-    //   AuthAPI.logout()
-    //       .then(() => {
-    //         this.mostrar = false;
-    //         this.$router.push("/Login");
-    //       })
-    //       .catch(err => console.error(`Não foi possível fazer login. ${err}`));
+      AuthAPI.logout()
+          .then(() => {
+            this.mostrar = false;
+            this.$router.push("/login");
+          })
+          .catch(err => console.error(`Não foi possível fazer logout. ${err}`));
     },
   },
   
