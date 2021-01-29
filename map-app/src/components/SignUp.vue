@@ -105,18 +105,17 @@ export default {
       this.password = "";
       this.confirmPassword = "";
       this.error = "";
-      this.snackbar = false;
-      this.message = "";
     },
     goToLoginPage() {
       this.$router.push("/login");
     },
     signUp() {
-      
+      console.log(this.password.length)
       if (this.password !== this.confirmPassword) {
         this.error = 'As senhas devem ser iguais.';
-      }
-      else {
+      } else if (this.password.length < 6) {
+        this.error = 'A senha deve conter pelo menos 6 caracteres.';
+      } else {
         AuthAPI.signUp({ email: this.email, password: this.password})
           .then(() => {
             this.snackbar = true;
@@ -124,8 +123,8 @@ export default {
             this.initialStates();
           })
           .catch(err => {
-            console.error(`Não foi possível fazer login. ${err}`);
-            this.error = 'E-mail e/ou senha incorretos.';
+            console.error(`${err}`);
+            this.error = "Erro: apenas usuários definidos podem ser cadastrados.";
           });
       }
     }
