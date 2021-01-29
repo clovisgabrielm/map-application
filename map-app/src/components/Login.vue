@@ -38,6 +38,7 @@
         >
           <div class="white-text">Entrar <v-icon>mdi-map-marker</v-icon></div>
         </v-btn>
+        <div class="sign-up">Não tem conta? <a href="../signUp">Cadastre-se</a></div>
       </v-form>
     </v-card>
     

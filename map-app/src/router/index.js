@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Login from '../components/Login.vue';
 import Layout from '../components/Layout.vue';
+import SignUp from '../components/SignUp.vue';
 import MapScreen from '../components/MapScreen.vue';
 import AuthAPI from '../api/auth';
  
@@ -24,6 +25,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/signUp',
+    name: 'SignUp',
+    component: SignUp
   }
 ]
  
@@ -34,7 +40,7 @@ const router = new VueRouter({
  
 // Global guard
 router.beforeEach((to, from, next) => {
-  if(to.name == 'Login') { 
+  if(to.name == 'Login' || to.name == 'SignUp') { 
     next();
   } else {
     if (AuthAPI.isAuthenticated()) {
