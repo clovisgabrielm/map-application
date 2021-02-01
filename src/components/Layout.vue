@@ -2,19 +2,17 @@
 <div>
     <Header />
     <v-row>
-        <v-col
-            cols="3"
-            sm="4"
-            md="4"
-            lg="1"
+        <!-- <v-col
+            cols="5"
+            sm="5"
+            md="5"
+            lg="2"
         >
             <SideNavigation />
-        </v-col>
+        </v-col> -->
         <v-col
-            cols="9"
-            sm="8"
-            md="8"
-            lg="11"
+            cols="12"
+            
         >
 
             <section>
@@ -27,13 +25,13 @@
 
 <script>
 import Header from "./Header";
-import SideNavigation from "./SideNavigation";
+// import SideNavigation from "./SideNavigation";
 
 export default {
   name: 'Layout',
   components: {
     Header,
-    SideNavigation
+    // SideNavigation
   }
 };
 </script>

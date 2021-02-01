@@ -18,7 +18,7 @@
       <v-row>
         <v-col
           col="9"
-          lg="9"
+          lg="8"
           md="6"
           sm="6"
         >
@@ -37,7 +37,7 @@
         </v-col>
         <v-col
           col="3"
-          lg="3"
+          lg="4"
           md="6"
           sm="6"
         >
