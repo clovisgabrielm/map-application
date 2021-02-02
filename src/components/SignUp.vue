@@ -27,7 +27,7 @@
           class="login-form"
         >
           <div class="title-login">
-            <h1><strong>Cadastre-se</strong></h1>
+            <h2><strong>Cadastre-se</strong></h2>
           </div>
           <v-text-field
             name="name"
@@ -65,10 +65,12 @@
             color="#ee675c"
             height="45px"
             class="btn-login"
+            :disabled="allFieldsFilled"
             @click="signUp"
           >
             <div class="white-text">Cadastrar</div>
           </v-btn>
+          <div class="sign-up"><a href="../login">Voltar para login</a></div>
         </v-form>
       </v-card>
       
@@ -91,6 +93,7 @@ export default {
       password: '',
       confirmPassword: '',
       snackbar: false,
+      allFieldsFilled: true,
       error: '',
       message: "",
     }
@@ -98,6 +101,12 @@ export default {
   methods: {
     cleanErrorMessage() {
       this.error = '';
+      this.allFieldsFilled = (
+        this.name == '' ||
+        this.email == '' ||
+        this.password == '' ||
+        this.confirmPassword == ''
+      );
     },
     initialStates() {
       this.name = "";
@@ -110,7 +119,6 @@ export default {
       this.$router.push("/login");
     },
     signUp() {
-      console.log(this.password.length)
       if (this.password !== this.confirmPassword) {
         this.error = 'As senhas devem ser iguais.';
       } else if (this.password.length < 6) {

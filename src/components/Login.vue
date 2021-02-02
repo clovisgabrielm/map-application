@@ -11,7 +11,7 @@
         class="login-form"
       >
         <div class="title-login">
-          <h1><strong>Login</strong></h1>
+          <h2><strong>Login</strong></h2>
         </div>
         <v-text-field
           name="email"
@@ -33,6 +33,7 @@
         <v-btn
           color="#ee675c"
           height="45px"
+          :disabled="allFieldsFilled"
           class="btn-login"
           @click="login"
         >
@@ -59,12 +60,14 @@ export default {
       email: '',
       password: '',
       checkbox: '',
-      error: ''
+      error: '',
+      allFieldsFilled: true
     }
   },
   methods: {
     cleanErrorMessage() {
       this.error = '';
+      this.allFieldsFilled = (this.email == '' || this.password == '');
     },
     login() {
       AuthAPI.login({ email: this.email, password: this.password})

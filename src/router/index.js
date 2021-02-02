@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Login from '../components/Login.vue';
 import Layout from '../components/Layout.vue';
 import SignUp from '../components/SignUp.vue';
+import Profile from '../components/Profile.vue';
 import MapScreen from '../components/MapScreen.vue';
 import AuthAPI from '../api/auth';
  
@@ -18,6 +19,11 @@ const routes = [
             name: 'MapScreen',
             component: MapScreen,
             auth: false
+        },
+        {
+          path: '/profile',
+          name: 'Profile',
+          component: Profile
         }
     ]
   },

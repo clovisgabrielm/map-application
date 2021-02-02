@@ -11,7 +11,7 @@
             text
             @click="snackbar = false"
           >
-            Close
+            <v-icon>mdi-close</v-icon>
           </v-btn>
         </template>
       </v-snackbar>
@@ -19,13 +19,13 @@
         <v-col
           col="9"
           lg="8"
-          md="6"
+          md="8"
           sm="6"
         >
            <gmap-map
             :center="{lat: this.lat, lng: this.lng}"
             :zoom="16"
-            style="width: 100%; height: 100vh; margin-top: 0.5em"
+            class="google-map-container"
           >
             <gmap-marker
               :key="index"
@@ -38,12 +38,12 @@
         <v-col
           col="3"
           lg="4"
-          md="6"
+          md="4"
           sm="6"
         >
           <v-card class="list-card col-12">
             <v-card-title>
-              Busque locais próximos de você!
+              Locais próximos
             </v-card-title>
             <v-card-subtitle>
               Ao escolher um tipo no campo abaixo, serão exibidos locais em um raio de 5km.
@@ -60,6 +60,8 @@
             <v-list
               nav
               dense
+              style="max-height: 50vh"
+              class="overflow-y-auto"
             >
               <v-list-item-group
                 v-model="selectedItem"
@@ -100,8 +102,17 @@ export default {
       items: [
         { text: 'Restaurante', value: 'restaurant' },
         { text: 'Bar', value: 'bar' },
-        { text: 'Hotel', value: 'motel' },
-        { text: 'Igreja', value: 'church' },
+        { text: 'Supermercado', value: 'supermarket' },
+        { text: 'Cinema', value: 'cinema' },
+        { text: 'Praia', value: 'beach' },
+        { text: 'Clube', value: 'club' },
+        { text: 'Cafeterias', value: 'cafe' },
+        { text: 'Teatro', value: 'theater' },
+        { text: 'Museu', value: 'museum' },
+        { text: 'Boate', value: 'pubs' },
+        { text: 'Universidade', value: 'university' },
+        { text: 'Escola', value: 'school' },
+        { text: 'Posto de gasolina', value: 'gasstation' }
       ],
       menu: [
           { title: 'Dashboard', icon: 'mdi-view-dashboard' },
@@ -141,11 +152,9 @@ export default {
 
       HTTPRequest.get(URL).then(response => {
         this.places = response.data.results;
-        console.log("t", this.places)
       }).catch(error => {
         this.errorMsg = error.message;
         this.snackbar = true;
-        console.log(error.message);
       });
     },
     changeType() {
