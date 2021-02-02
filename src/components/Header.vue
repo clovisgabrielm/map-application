@@ -22,19 +22,6 @@
           </template>
           <span>Ver mapa</span>
         </v-tooltip>
-        <!-- <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              icon 
-              v-bind="attrs"
-              @click="openFavs"
-              v-on="on"
-            >
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-          </template>
-          <span>Locais favoritos</span>
-        </v-tooltip> -->
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
